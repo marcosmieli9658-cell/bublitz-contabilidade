@@ -6,17 +6,35 @@ import {
 
 const services = [
   { icon: BarChart3, index: '01', title: 'Contabilidade', text: 'Escrituração contábil e relatórios para uma gestão segura e eficiente.' },
-  { icon: ReceiptText, index: '02', title: 'Fiscal', text: 'Apuração e entrega de obrigações fiscais com acompanhamento próximo.' },
+  { icon: ReceiptText, index: '02', title: 'Fiscal', text: 'Apuração e entrega das obrigações fiscais da sua empresa.' },
   { icon: UsersRound, index: '03', title: 'Departamento pessoal', text: 'Folha de pagamento, admissões, rescisões e rotinas trabalhistas.' },
   { icon: UserCheck, index: '04', title: 'MEI', text: 'Abertura, regularização e acompanhamento para Microempreendedores Individuais.' },
-  { icon: Handshake, index: '05', title: 'Consultoria', text: 'Orientação estratégica para apoiar as decisões e o crescimento do seu negócio.' },
-  { icon: Calculator, index: '06', title: 'Imposto de renda', text: 'Declaração de pessoa física com orientação em cada etapa.' },
-  { icon: FileCheck2, index: '07', title: 'Abertura e regularização', text: 'Da formalização à regularização da empresa, com todo o suporte necessário.' },
-  { icon: BadgeDollarSign, index: '08', title: 'Débitos do CPF', text: 'Análise e regularização de pendências junto à Receita Federal.' },
-  { icon: BriefcaseBusiness, index: '09', title: 'Carnê-Leão', text: 'Orientação e apuração mensal para profissionais liberais.' },
+  { icon: Handshake, index: '05', title: 'Consultoria', text: 'Orientação contábil para apoiar decisões e organizar os próximos passos.' },
+  { icon: Calculator, index: '06', title: 'Imposto de renda', text: 'Declaração de Imposto de Renda de Pessoa Física com orientação em cada etapa.' },
+  { icon: FileCheck2, index: '07', title: 'Abertura e regularização', text: 'Suporte para abrir ou regularizar sua empresa com mais tranquilidade.' },
+  { icon: BadgeDollarSign, index: '08', title: 'Débitos do CPF', text: 'Análise e regularização de débitos do CPF junto à Receita Federal.' },
+  { icon: BriefcaseBusiness, index: '09', title: 'Carnê-Leão', text: 'Orientação e apuração mensal para profissionais liberais e autônomos.' },
 ];
 
-const specialties = ['Tecnologia da Informação', 'Psicologia', 'Fisioterapia', 'MEIs', 'Prestadores de serviços'];
+const specialties = [
+  ['01', 'Tecnologia da Informação'],
+  ['02', 'Psicologia'],
+  ['03', 'Fisioterapia'],
+  ['04', 'MEIs em geral'],
+  ['05', 'Prestadores de serviços'],
+];
+
+function Brand() {
+  return (
+    <span className="brand-lockup">
+      <span className="brand-mark" aria-hidden="true">
+        {/* oxlint-disable-next-line next/no-img-element -- símbolo original da marca */}
+        <img src="./bublitz-logo-escuro.jpeg" alt="" />
+      </span>
+      <span className="brand-name"><strong><b>BU</b>BLITZ</strong><small>CONTABILIDADE</small></span>
+    </span>
+  );
+}
 
 export default function Home() {
   return (
@@ -24,14 +42,11 @@ export default function Home() {
       <section className="hero" id="inicio">
         <div className="hero-glow" aria-hidden="true" />
         <header className="site-header shell">
-          <a className="brand" href="#inicio" aria-label="Bublitz Contabilidade — início">
-            {/* oxlint-disable-next-line next/no-img-element -- site estático no GitHub Pages */}
-            <img src="./bublitz-logo-escuro.jpeg" alt="Bublitz Contabilidade" />
-          </a>
+          <a className="brand" href="#inicio" aria-label="Bublitz Contabilidade — início"><Brand /></a>
           <nav aria-label="Navegação principal">
             <a href="#servicos">Serviços</a><a href="#especialidades">Especialidades</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a>
           </nav>
-          <a className="header-phone" href="tel:+5512982658942"><Phone size={16} aria-hidden="true" /><span>(12) 98265-8942</span></a>
+          <a className="header-phone" href="tel:+5512982658942" aria-label="Ligar para a Bublitz Contabilidade"><Phone size={17} aria-hidden="true" /><span>(12) 98265-8942</span></a>
         </header>
 
         <div className="hero-content shell">
@@ -43,15 +58,14 @@ export default function Home() {
               <a className="button-primary" href="tel:+5512982658942">Fale com a Bublitz <ArrowUpRight size={19} aria-hidden="true" /></a>
               <a className="text-link" href="#servicos">Conheça nossos serviços</a>
             </div>
-            <div className="experience-note"><Clock3 aria-hidden="true" /><div><strong>13 anos</strong><span>de experiência no ramo</span></div></div>
           </div>
-          <div className="hero-visual" aria-label="Material institucional da Bublitz Contabilidade">
-            <div className="image-frame">
-              {/* oxlint-disable-next-line next/no-img-element -- material institucional fornecido */}
-              <img src="./bublitz-servicos.jpeg" alt="Material da Bublitz com calculadora, documentos e a frase Seu negócio em boas mãos" />
-            </div>
-            <div className="visual-caption"><span>01</span><p>Organização<br />Segurança<br />Resultados</p></div>
-          </div>
+
+          <aside className="hero-panel" aria-label="Experiência e especialidades">
+            <div className="panel-top"><span>Experiência que acompanha seu negócio</span><Clock3 aria-hidden="true" /></div>
+            <div className="experience-number"><strong>13</strong><span>anos<br />no ramo</span></div>
+            <p>Atendimento contábil próximo e especializado para quem empreende e presta serviços.</p>
+            <div className="panel-tags"><span>Empresas</span><span>MEIs</span><span>Pessoas físicas</span></div>
+          </aside>
         </div>
         <a className="scroll-cue" href="#servicos" aria-label="Ir para os serviços"><span>Explore</span><ArrowDown size={16} aria-hidden="true" /></a>
       </section>
@@ -67,8 +81,8 @@ export default function Home() {
       <section className="services section" id="servicos">
         <div className="shell">
           <div className="section-head">
-            <div><span className="kicker">O que fazemos</span><h2>Contabilidade que<br />trabalha <em>com você.</em></h2></div>
-            <p>Da rotina mensal às decisões importantes, reunimos os serviços que mantêm sua vida profissional e o seu negócio bem cuidados.</p>
+            <div><span className="kicker">O que fazemos</span><h2>Soluções para cada<br />fase do <em>seu negócio.</em></h2></div>
+            <p>Da rotina mensal às decisões importantes, reunimos os serviços que mantêm sua vida profissional e a sua empresa bem cuidados.</p>
           </div>
           <div className="service-grid">
             {services.map(({ icon: Icon, index, title, text }) => (
@@ -88,25 +102,25 @@ export default function Home() {
             <span className="kicker kicker-dark">Experiência que entende o seu contexto</span>
             <h2>Especialistas em quem presta serviços.</h2>
             <p>Conhecemos as particularidades de profissionais e negócios que precisam de orientação clara, rotina organizada e segurança para avançar.</p>
-            <ul>{specialties.map((item) => <li key={item}><Check size={17} aria-hidden="true" />{item}</li>)}</ul>
+            <ul>
+              <li><Check size={18} aria-hidden="true" /> Orientação clara e objetiva</li>
+              <li><Check size={18} aria-hidden="true" /> Acompanhamento próximo</li>
+              <li><Check size={18} aria-hidden="true" /> Soluções para cada fase</li>
+            </ul>
           </div>
-          <div className="specialties-visual">
-            <div className="specialty-number">13<span>anos</span></div>
-            <div className="specialty-photo">
-              {/* oxlint-disable-next-line next/no-img-element -- material institucional fornecido */}
-              <img src="./bublitz-institucional.jpeg" alt="Apresentação institucional da Bublitz Contabilidade" />
-            </div>
-            <div className="blue-panel"><Laptop aria-hidden="true" /><span>Atuação especializada para a área de tecnologia e profissionais liberais.</span></div>
+          <div className="specialty-board" aria-label="Segmentos de especialização">
+            <div className="board-heading"><Laptop aria-hidden="true" /><span>Áreas de<br /><strong>especialização</strong></span></div>
+            {specialties.map(([number, name]) => <div className="specialty-row" key={name}><span>{number}</span><strong>{name}</strong><ArrowUpRight aria-hidden="true" /></div>)}
           </div>
         </div>
       </section>
 
       <section className="about section" id="sobre">
         <div className="shell about-grid">
-          <figure className="about-brand"><div className="about-logo">
-            {/* oxlint-disable-next-line next/no-img-element -- logo original fornecido */}
-            <img src="./bublitz-logo-claro.jpeg" alt="Marca Bublitz Contabilidade em fundo claro" />
-          </div><figcaption>Uma marca construída para acompanhar cada fase do seu negócio.</figcaption></figure>
+          <div className="about-statement">
+            <span className="statement-mark" aria-hidden="true">B</span>
+            <p>Organização.<br />Proximidade.<br /><strong>Confiança.</strong></p>
+          </div>
           <div className="about-copy">
             <span className="kicker">Seu negócio em boas mãos</span>
             <h2>Mais que contabilidade, <em>um parceiro para o seu futuro.</em></h2>
@@ -129,10 +143,9 @@ export default function Home() {
 
       <footer>
         <div className="shell footer-main">
-          {/* oxlint-disable-next-line next/no-img-element -- logo original fornecido */}
-          <img src="./bublitz-logo-escuro.jpeg" alt="Bublitz Contabilidade" />
+          <a className="footer-brand" href="#inicio" aria-label="Voltar ao início"><Brand /></a>
           <p>Soluções contábeis para o seu crescimento.</p>
-          <a href="tel:+5512982658942">Fale conosco <ArrowUpRight size={16} aria-hidden="true" /></a>
+          <a className="footer-action" href="tel:+5512982658942">Fale conosco <ArrowUpRight size={16} aria-hidden="true" /></a>
         </div>
         <div className="shell footer-bottom"><span>© 2026 Bublitz Contabilidade</span><span>CNPJ 50.380.342/0001-52</span></div>
       </footer>
