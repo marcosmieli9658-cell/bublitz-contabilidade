@@ -5,16 +5,17 @@
   "outputDirectory": "dist-pages",
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.bublitzcontabilidade.com.br" }],
-      "destination": "https://bublitzcontabilidade.com.br/:path*",
+      "destination": "https://bublitzcontabilidade.com.br/$1",
       "permanent": true
-    },
+    }
+  ],
+  "headers": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "bublitz-contabilidade.vercel.app" }],
-      "destination": "https://bublitzcontabilidade.com.br/:path*",
-      "permanent": true
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ]
 }
