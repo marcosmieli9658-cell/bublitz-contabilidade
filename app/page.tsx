@@ -1,7 +1,10 @@
+'use client';
+
+import { useEffect } from 'react';
 import {
   ArrowDown, ArrowUpRight, BadgeDollarSign, BarChart3, BriefcaseBusiness,
   Calculator, Check, Clock3, FileCheck2, Handshake, Laptop, MapPin,
-  Phone, ReceiptText, Sparkles, UserCheck, UsersRound,
+  LogIn, Phone, ReceiptText, Sparkles, UserCheck, UsersRound,
 } from 'lucide-react';
 
 const services = [
@@ -37,6 +40,30 @@ function Brand() {
 }
 
 export default function Home() {
+  useEffect(() => {
+    const elements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduceMotion || !('IntersectionObserver' in window)) return;
+
+    document.documentElement.classList.add('reveal-ready');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        (entry.target as HTMLElement).classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove('reveal-ready');
+    };
+  }, []);
+
   return (
     <main>
       <section className="hero" id="inicio">
@@ -46,11 +73,23 @@ export default function Home() {
           <nav aria-label="Navegação principal">
             <a href="#servicos">Serviços</a><a href="#especialidades">Especialidades</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a>
           </nav>
-          <a className="header-phone" href="tel:+5512982658942" aria-label="Ligar para a Bublitz Contabilidade"><Phone size={17} aria-hidden="true" /><span>(12) 98265-8942</span></a>
+          <div className="header-actions">
+            <a
+              className="client-area-link"
+              href="https://portal-bublitzcontabilidade.web.app/login/@bublitzcontabilidade"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir a Área do cliente em uma nova aba"
+              title="Abrir Área do cliente"
+            >
+              <LogIn size={17} aria-hidden="true" /><span>Área do cliente</span>
+            </a>
+            <a className="header-phone" href="tel:+5512982658942" aria-label="Ligar para a Bublitz Contabilidade"><Phone size={17} aria-hidden="true" /><span>(12) 98265-8942</span></a>
+          </div>
         </header>
 
         <div className="hero-content shell">
-          <div className="hero-copy">
+          <div className="hero-copy" data-reveal="left">
             <div className="eyebrow"><span /> Contabilidade em São José dos Campos</div>
             <h1>Clareza para decidir.<br /><em>Segurança para crescer.</em></h1>
             <p className="hero-lead">Soluções contábeis para profissionais e empresas que querem cuidar do presente sem perder de vista o futuro.</p>
@@ -60,7 +99,7 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="hero-panel" aria-label="Experiência e especialidades">
+          <aside className="hero-panel" aria-label="Experiência e especialidades" data-reveal="right">
             <div className="panel-top"><span>Experiência que acompanha seu negócio</span><Clock3 aria-hidden="true" /></div>
             <div className="experience-number"><strong>13</strong><span>anos<br />no ramo</span></div>
             <p>Atendimento contábil próximo e especializado para quem empreende e presta serviços.</p>
@@ -71,7 +110,7 @@ export default function Home() {
       </section>
 
       <section className="trust-strip" aria-label="Diferenciais">
-        <div className="shell trust-grid">
+        <div className="shell trust-grid" data-reveal="left">
           <div><strong>13</strong><span>anos de experiência</span></div>
           <div><strong>05</strong><span>segmentos de atuação</span></div>
           <div><Sparkles aria-hidden="true" /><span>Atendimento próximo<br />e especializado</span></div>
@@ -80,13 +119,13 @@ export default function Home() {
 
       <section className="services section" id="servicos">
         <div className="shell">
-          <div className="section-head">
+          <div className="section-head" data-reveal="left">
             <div><span className="kicker">O que fazemos</span><h2>Soluções para cada<br />fase do <em>seu negócio.</em></h2></div>
             <p>Da rotina mensal às decisões importantes, reunimos os serviços que mantêm sua vida profissional e a sua empresa bem cuidados.</p>
           </div>
           <div className="service-grid">
             {services.map(({ icon: Icon, index, title, text }) => (
-              <article className="service-card" key={title}>
+              <article className="service-card" key={title} data-reveal={Number(index) % 2 === 0 ? 'right' : 'left'}>
                 <div className="card-top"><span>{index}</span><Icon aria-hidden="true" /></div>
                 <h3>{title}</h3><p>{text}</p>
                 <div className="card-line" aria-hidden="true" />
@@ -98,7 +137,7 @@ export default function Home() {
 
       <section className="specialties section" id="especialidades">
         <div className="shell specialties-grid">
-          <div className="specialties-copy">
+          <div className="specialties-copy" data-reveal="left">
             <span className="kicker kicker-dark">Experiência que entende o seu contexto</span>
             <h2>Especialistas em quem presta serviços.</h2>
             <p>Conhecemos as particularidades de profissionais e negócios que precisam de orientação clara, rotina organizada e segurança para avançar.</p>
@@ -108,7 +147,7 @@ export default function Home() {
               <li><Check size={18} aria-hidden="true" /> Soluções para cada fase</li>
             </ul>
           </div>
-          <div className="specialty-board" aria-label="Segmentos de especialização">
+          <div className="specialty-board" aria-label="Segmentos de especialização" data-reveal="right">
             <div className="board-heading"><Laptop aria-hidden="true" /><span>Áreas de<br /><strong>especialização</strong></span></div>
             {specialties.map(([number, name]) => <div className="specialty-row" key={name}><span>{number}</span><strong>{name}</strong><ArrowUpRight aria-hidden="true" /></div>)}
           </div>
@@ -117,11 +156,11 @@ export default function Home() {
 
       <section className="about section" id="sobre">
         <div className="shell about-grid">
-          <div className="about-statement">
+          <div className="about-statement" data-reveal="left">
             <span className="statement-mark" aria-hidden="true">B</span>
             <p>Organização.<br />Proximidade.<br /><strong>Confiança.</strong></p>
           </div>
-          <div className="about-copy">
+          <div className="about-copy" data-reveal="right">
             <span className="kicker">Seu negócio em boas mãos</span>
             <h2>Mais que contabilidade, <em>um parceiro para o seu futuro.</em></h2>
             <p>Há 13 anos, a Bublitz Contabilidade atua ao lado de empreendedores e profissionais, transformando obrigações em organização e informação em decisões mais seguras.</p>
@@ -133,8 +172,8 @@ export default function Home() {
 
       <section className="contact section" id="contato">
         <div className="shell contact-box">
-          <div className="contact-heading"><span className="kicker kicker-dark">Vamos conversar?</span><h2>Sua contabilidade pode ser mais <em>simples, próxima e segura.</em></h2></div>
-          <div className="contact-actions">
+          <div className="contact-heading" data-reveal="left"><span className="kicker kicker-dark">Vamos conversar?</span><h2>Sua contabilidade pode ser mais <em>simples, próxima e segura.</em></h2></div>
+          <div className="contact-actions" data-reveal="right">
             <a className="contact-link" href="tel:+5512982658942"><span className="contact-icon"><Phone aria-hidden="true" /></span><span><small>Telefone</small><strong>(12) 98265-8942</strong></span><ArrowUpRight aria-hidden="true" /></a>
             <a className="contact-link" href="https://www.google.com/maps/search/?api=1&query=Rua+Nelson+Cesar+de+Oliveira+134+Sao+Jose+dos+Campos+SP" target="_blank" rel="noreferrer"><span className="contact-icon"><MapPin aria-hidden="true" /></span><span><small>Endereço</small><strong>Rua Nelson Cesar de Oliveira, 134 — sala 24</strong><b>Jardim das Indústrias · São José dos Campos — SP</b></span><ArrowUpRight aria-hidden="true" /></a>
           </div>
@@ -142,7 +181,7 @@ export default function Home() {
       </section>
 
       <footer>
-        <div className="shell footer-main">
+        <div className="shell footer-main" data-reveal="left">
           <a className="footer-brand" href="#inicio" aria-label="Voltar ao início"><Brand /></a>
           <p>Soluções contábeis para o seu crescimento.</p>
           <a className="footer-action" href="tel:+5512982658942">Fale conosco <ArrowUpRight size={16} aria-hidden="true" /></a>
