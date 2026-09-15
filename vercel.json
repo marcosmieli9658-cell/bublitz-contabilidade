@@ -2,5 +2,19 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
   "buildCommand": "npm run build",
-  "outputDirectory": "dist-pages"
+  "outputDirectory": "dist-pages",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.bublitzcontabilidade.com.br" }],
+      "destination": "https://bublitzcontabilidade.com.br/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "bublitz-contabilidade.vercel.app" }],
+      "destination": "https://bublitzcontabilidade.com.br/:path*",
+      "permanent": true
+    }
+  ]
 }

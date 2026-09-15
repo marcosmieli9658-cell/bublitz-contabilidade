@@ -20,6 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Evitar indexação da cópia de prévia
+        run: node -e "const fs=require('fs');const p='dist-pages/index.html';const h=fs.readFileSync(p,'utf8').replace(/<meta name=\"robots\"[^>]*>/,'<meta name=\"robots\" content=\"noindex, nofollow\" />').replace(/<meta name=\"googlebot\"[^>]*>/,'<meta name=\"googlebot\" content=\"noindex, nofollow\" />');fs.writeFileSync(p,h)"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist-pages

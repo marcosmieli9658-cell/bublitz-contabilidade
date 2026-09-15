@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import {
   ArrowDown, ArrowUpRight, BadgeDollarSign, BarChart3, BriefcaseBusiness,
   Calculator, Check, Clock3, FileCheck2, Handshake, Laptop, Mail, MapPin,
-  LogIn, MessageCircle, Phone, ReceiptText, Sparkles, UserCheck, UsersRound,
+  LogIn, MessageCircle, Phone, Plus, ReceiptText, Sparkles, UserCheck, UsersRound,
 } from 'lucide-react';
 
 const services = [
@@ -25,6 +25,33 @@ const specialties = [
   ['03', 'Fisioterapia'],
   ['04', 'MEIs em geral'],
   ['05', 'Prestadores de serviços'],
+];
+
+const frequentlyAskedQuestions = [
+  {
+    question: 'Quais serviços a Bublitz Contabilidade oferece?',
+    answer: 'A Bublitz atua com contabilidade, fiscal, departamento pessoal, consultoria, MEI, Imposto de Renda de Pessoa Física, abertura e regularização de empresas, débitos do CPF e Carnê-Leão.',
+  },
+  {
+    question: 'A Bublitz atende MEIs e prestadores de serviços?',
+    answer: 'Sim. O atendimento inclui MEIs, empresas, prestadores de serviços e pessoas físicas, com orientação de acordo com cada rotina e momento profissional.',
+  },
+  {
+    question: 'Quais áreas têm atendimento especializado?',
+    answer: 'O escritório possui experiência no atendimento a profissionais e negócios de Tecnologia da Informação, Psicologia, Fisioterapia, MEIs e prestadores de serviços em geral.',
+  },
+  {
+    question: 'A Bublitz oferece serviços para pessoas físicas?',
+    answer: 'Sim. Entre os serviços estão a declaração de Imposto de Renda de Pessoa Física, a regularização de débitos do CPF junto à Receita Federal e a orientação mensal para Carnê-Leão.',
+  },
+  {
+    question: 'Onde fica a Bublitz Contabilidade?',
+    answer: 'O escritório fica na Rua Nelson Cesar de Oliveira, 134, sala 24, no Jardim das Indústrias, em São José dos Campos, São Paulo.',
+  },
+  {
+    question: 'Como acessar a Área do Cliente?',
+    answer: 'Use o botão “Área do cliente” no cabeçalho. O portal será aberto em uma nova aba para que clientes acessem seus documentos e informações com o login que já possuem.',
+  },
 ];
 
 function Brand() {
@@ -71,7 +98,7 @@ export default function Home() {
         <header className="site-header shell">
           <a className="brand" href="#inicio" aria-label="Bublitz Contabilidade — início"><Brand /></a>
           <nav aria-label="Navegação principal">
-            <a href="#servicos">Serviços</a><a href="#especialidades">Especialidades</a><a href="#sobre">Sobre</a><a href="#contato">Contato</a>
+            <a href="#servicos">Serviços</a><a href="#especialidades">Especialidades</a><a href="#sobre">Sobre</a><a href="#duvidas">Dúvidas</a><a href="#contato">Contato</a>
           </nav>
           <div className="header-actions">
             <a
@@ -91,8 +118,8 @@ export default function Home() {
         <div className="hero-content shell">
           <div className="hero-copy" data-reveal="left">
             <div className="eyebrow"><span /> Contabilidade em São José dos Campos</div>
-            <h1>Clareza para decidir.<br /><em>Segurança para crescer.</em></h1>
-            <p className="hero-lead">Soluções contábeis para profissionais e empresas que querem cuidar do presente sem perder de vista o futuro.</p>
+            <h1>Contabilidade com clareza.<br /><em>Segurança para crescer.</em></h1>
+            <p className="hero-lead">A Bublitz atende empresas, MEIs, prestadores de serviços e pessoas físicas em São José dos Campos, com soluções contábeis, fiscais e trabalhistas para uma rotina mais organizada.</p>
             <div className="hero-actions">
               <a className="button-primary" href="https://wa.me/5512982658942" target="_blank" rel="noopener noreferrer"><MessageCircle size={19} aria-hidden="true" /> Fale com a Bublitz <ArrowUpRight size={19} aria-hidden="true" /></a>
               <a className="text-link" href="#servicos">Conheça nossos serviços</a>
@@ -170,15 +197,33 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="faq section" id="duvidas" aria-labelledby="faq-title">
+        <div className="shell faq-grid">
+          <div className="faq-heading" data-reveal="left">
+            <span className="kicker">Informações diretas</span>
+            <h2 id="faq-title">Dúvidas sobre a <em>Bublitz Contabilidade.</em></h2>
+            <p>Respostas rápidas para entender como o escritório pode apoiar sua empresa, sua atividade profissional ou sua rotina como pessoa física.</p>
+          </div>
+          <div className="faq-list">
+            {frequentlyAskedQuestions.map(({ question, answer }, index) => (
+              <details className="faq-item" key={question} open={index === 0} data-reveal={index % 2 === 0 ? 'right' : 'left'}>
+                <summary><span>{question}</span><Plus aria-hidden="true" /></summary>
+                <div className="faq-answer"><p>{answer}</p></div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="contact section" id="contato">
         <div className="shell contact-box">
           <div className="contact-heading" data-reveal="left"><span className="kicker kicker-dark">Vamos conversar?</span><h2>Sua contabilidade pode ser mais <em>simples, próxima e segura.</em></h2></div>
-          <div className="contact-actions" data-reveal="right">
+          <address className="contact-actions" data-reveal="right">
             <a className="contact-link" href="https://wa.me/5512982658942" target="_blank" rel="noopener noreferrer"><span className="contact-icon"><MessageCircle aria-hidden="true" /></span><span><small>WhatsApp</small><strong>(12) 98265-8942</strong></span><ArrowUpRight aria-hidden="true" /></a>
             <a className="contact-link" href="tel:+5512982658942"><span className="contact-icon"><Phone aria-hidden="true" /></span><span><small>Telefone</small><strong>(12) 98265-8942</strong></span><ArrowUpRight aria-hidden="true" /></a>
             <a className="contact-link contact-link-email" href="mailto:bublitz.scontabeis@gmail.com"><span className="contact-icon"><Mail aria-hidden="true" /></span><span><small>E-mail</small><strong>bublitz.scontabeis@gmail.com</strong></span><ArrowUpRight aria-hidden="true" /></a>
             <a className="contact-link" href="https://www.google.com/maps/search/?api=1&query=Rua+Nelson+Cesar+de+Oliveira+134+Sao+Jose+dos+Campos+SP" target="_blank" rel="noreferrer"><span className="contact-icon"><MapPin aria-hidden="true" /></span><span><small>Endereço</small><strong>Rua Nelson Cesar de Oliveira, 134 — sala 24</strong><b>Jardim das Indústrias · São José dos Campos — SP</b></span><ArrowUpRight aria-hidden="true" /></a>
-          </div>
+          </address>
         </div>
       </section>
 

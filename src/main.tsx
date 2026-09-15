@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import Home from '../app/page';
 import '../app/globals.css';
 
@@ -9,8 +9,14 @@ if (!root) {
   throw new Error('Elemento raiz não encontrado.');
 }
 
-createRoot(root).render(
+const app = (
   <StrictMode>
     <Home />
-  </StrictMode>,
+  </StrictMode>
 );
+
+if (root.hasChildNodes()) {
+  hydrateRoot(root, app);
+} else {
+  createRoot(root).render(app);
+}
