@@ -1,10 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ArrowDown, ArrowUpRight, BadgeDollarSign, BarChart3, BriefcaseBusiness,
   Calculator, Check, Clock3, FileCheck2, Handshake, Laptop, Mail, MapPin,
-  LogIn, MessageCircle, Phone, Plus, ReceiptText, Sparkles, UserCheck, UsersRound,
+  LogIn, Menu, MessageCircle, Phone, Plus, ReceiptText, Sparkles, UserCheck,
+  UsersRound, X,
 } from 'lucide-react';
 
 const services = [
@@ -67,6 +68,8 @@ function Brand() {
 }
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -91,13 +94,24 @@ export default function Home() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', closeOnEscape);
+    return () => window.removeEventListener('keydown', closeOnEscape);
+  }, [mobileMenuOpen]);
+
   return (
     <main>
       <section className="hero" id="inicio">
         <div className="hero-glow" aria-hidden="true" />
         <header className="site-header shell">
           <a className="brand" href="#inicio" aria-label="Bublitz Contabilidade — início"><Brand /></a>
-          <nav aria-label="Navegação principal">
+          <nav className="desktop-nav" aria-label="Navegação principal">
             <a href="#servicos">Serviços</a><a href="#especialidades">Especialidades</a><a href="#sobre">Sobre</a><a href="#duvidas">Dúvidas</a><a href="#contato">Contato</a>
           </nav>
           <div className="header-actions">
@@ -112,7 +126,24 @@ export default function Home() {
               <LogIn size={17} aria-hidden="true" /><span>Área do cliente</span>
             </a>
             <a className="header-phone" href="tel:+5512982658942" aria-label="Ligar para a Bublitz Contabilidade"><Phone size={17} aria-hidden="true" /><span>(12) 98265-8942</span></a>
+            <button
+              className="mobile-menu-toggle"
+              type="button"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
+              aria-label={mobileMenuOpen ? 'Fechar menu de navegação' : 'Abrir menu de navegação'}
+              onClick={() => setMobileMenuOpen((open) => !open)}
+            >
+              {mobileMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+            </button>
           </div>
+          <nav className={`mobile-nav${mobileMenuOpen ? ' is-open' : ''}`} id="mobile-navigation" aria-label="Navegação no celular" aria-hidden={!mobileMenuOpen}>
+            <a href="#servicos" onClick={() => setMobileMenuOpen(false)}><span>Serviços</span><ArrowUpRight aria-hidden="true" /></a>
+            <a href="#especialidades" onClick={() => setMobileMenuOpen(false)}><span>Especialidades</span><ArrowUpRight aria-hidden="true" /></a>
+            <a href="#sobre" onClick={() => setMobileMenuOpen(false)}><span>Sobre</span><ArrowUpRight aria-hidden="true" /></a>
+            <a href="#duvidas" onClick={() => setMobileMenuOpen(false)}><span>Dúvidas</span><ArrowUpRight aria-hidden="true" /></a>
+            <a href="#contato" onClick={() => setMobileMenuOpen(false)}><span>Contato</span><ArrowUpRight aria-hidden="true" /></a>
+          </nav>
         </header>
 
         <div className="hero-content shell">
@@ -234,6 +265,21 @@ export default function Home() {
           <a className="footer-action" href="https://wa.me/5512982658942" target="_blank" rel="noopener noreferrer"><MessageCircle size={16} aria-hidden="true" /> Fale conosco <ArrowUpRight size={16} aria-hidden="true" /></a>
         </div>
         <div className="shell footer-bottom"><span>© 2026 Bublitz Contabilidade</span><span>CNPJ 50.380.342/0001-52</span></div>
+        <div className="site-credit">
+          <div className="shell site-credit-inner">
+            <a className="site-credit-maker" href="https://agencyupscale.com.br/" target="_blank" rel="noopener noreferrer" aria-label="Visitar o site da UpScale Agency, desenvolvedora deste site">
+              {/* oxlint-disable-next-line next/no-img-element -- logo oficial otimizado em WebP */}
+              <img className="site-credit-logo" src="./upscale-logo-mark.webp" alt="" width="133" height="108" loading="lazy" decoding="async" />
+              <span>Site desenvolvido por <strong>UpScale Agency</strong></span>
+            </a>
+            <div className="site-credit-meta">
+              <span>CNPJ 68.023.017/0001-06</span>
+              <a className="site-credit-whatsapp" href="https://wa.me/5512974010860?text=Ol%C3%A1%21%20Vi%20o%20site%20da%20Bublitz%20Contabilidade%20e%20quero%20conhecer%20o%20trabalho%20da%20UpScale." target="_blank" rel="noopener noreferrer" aria-label="Falar com a UpScale Agency pelo WhatsApp no número (12) 97401-0860">
+                <MessageCircle size={15} aria-hidden="true" /> <span>(12) 97401-0860</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </footer>
     </main>
   );
