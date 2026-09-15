@@ -3,8 +3,8 @@
 import { useEffect } from 'react';
 import {
   ArrowDown, ArrowUpRight, BadgeDollarSign, BarChart3, BriefcaseBusiness,
-  Calculator, Check, Clock3, FileCheck2, Handshake, Laptop, MapPin,
-  LogIn, Phone, ReceiptText, Sparkles, UserCheck, UsersRound,
+  Calculator, Check, Clock3, FileCheck2, Handshake, Laptop, Mail, MapPin,
+  LogIn, MessageCircle, Phone, ReceiptText, Sparkles, UserCheck, UsersRound,
 } from 'lucide-react';
 
 const services = [
@@ -94,7 +94,7 @@ export default function Home() {
             <h1>Clareza para decidir.<br /><em>Segurança para crescer.</em></h1>
             <p className="hero-lead">Soluções contábeis para profissionais e empresas que querem cuidar do presente sem perder de vista o futuro.</p>
             <div className="hero-actions">
-              <a className="button-primary" href="tel:+5512982658942">Fale com a Bublitz <ArrowUpRight size={19} aria-hidden="true" /></a>
+              <a className="button-primary" href="https://wa.me/5512982658942" target="_blank" rel="noopener noreferrer"><MessageCircle size={19} aria-hidden="true" /> Fale com a Bublitz <ArrowUpRight size={19} aria-hidden="true" /></a>
               <a className="text-link" href="#servicos">Conheça nossos serviços</a>
             </div>
           </div>
@@ -174,7 +174,9 @@ export default function Home() {
         <div className="shell contact-box">
           <div className="contact-heading" data-reveal="left"><span className="kicker kicker-dark">Vamos conversar?</span><h2>Sua contabilidade pode ser mais <em>simples, próxima e segura.</em></h2></div>
           <div className="contact-actions" data-reveal="right">
+            <a className="contact-link" href="https://wa.me/5512982658942" target="_blank" rel="noopener noreferrer"><span className="contact-icon"><MessageCircle aria-hidden="true" /></span><span><small>WhatsApp</small><strong>(12) 98265-8942</strong></span><ArrowUpRight aria-hidden="true" /></a>
             <a className="contact-link" href="tel:+5512982658942"><span className="contact-icon"><Phone aria-hidden="true" /></span><span><small>Telefone</small><strong>(12) 98265-8942</strong></span><ArrowUpRight aria-hidden="true" /></a>
+            <a className="contact-link contact-link-email" href="mailto:bublitz.scontabeis@gmail.com"><span className="contact-icon"><Mail aria-hidden="true" /></span><span><small>E-mail</small><strong>bublitz.scontabeis@gmail.com</strong></span><ArrowUpRight aria-hidden="true" /></a>
             <a className="contact-link" href="https://www.google.com/maps/search/?api=1&query=Rua+Nelson+Cesar+de+Oliveira+134+Sao+Jose+dos+Campos+SP" target="_blank" rel="noreferrer"><span className="contact-icon"><MapPin aria-hidden="true" /></span><span><small>Endereço</small><strong>Rua Nelson Cesar de Oliveira, 134 — sala 24</strong><b>Jardim das Indústrias · São José dos Campos — SP</b></span><ArrowUpRight aria-hidden="true" /></a>
           </div>
         </div>
@@ -184,7 +186,7 @@ export default function Home() {
         <div className="shell footer-main" data-reveal="left">
           <a className="footer-brand" href="#inicio" aria-label="Voltar ao início"><Brand /></a>
           <p>Soluções contábeis para o seu crescimento.</p>
-          <a className="footer-action" href="tel:+5512982658942">Fale conosco <ArrowUpRight size={16} aria-hidden="true" /></a>
+          <a className="footer-action" href="https://wa.me/5512982658942" target="_blank" rel="noopener noreferrer"><MessageCircle size={16} aria-hidden="true" /> Fale conosco <ArrowUpRight size={16} aria-hidden="true" /></a>
         </div>
         <div className="shell footer-bottom"><span>© 2026 Bublitz Contabilidade</span><span>CNPJ 50.380.342/0001-52</span></div>
       </footer>

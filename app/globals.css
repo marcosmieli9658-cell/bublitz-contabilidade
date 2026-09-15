@@ -136,6 +136,7 @@ h2 em { color: var(--blue-strong); font-family: Georgia,'Times New Roman',serif;
 .contact-link > span:nth-child(2) { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
 .contact-link small { text-transform: uppercase; letter-spacing: .13em; font-size: .65rem; font-weight: 780; opacity: .65; }
 .contact-link strong { font-size: 1.05rem; overflow-wrap: anywhere; }
+.contact-link-email strong { font-size: .95rem; letter-spacing: -.02em; }
 .contact-link b { font-size: .78rem; font-weight: 550; opacity: .7; }
 .contact-link > svg { width: 19px; }
 
@@ -204,6 +205,7 @@ footer { background: #040608; padding: 66px 0 30px; }
   .contact-link { grid-template-columns: 45px minmax(0,1fr) 18px; gap: 11px; min-height: 118px; }
   .contact-icon { width: 45px; height: 45px; }
   .contact-link strong { font-size: .92rem; }
+  .contact-link-email strong { font-size: .82rem; }
   .contact-link b { font-size: .72rem; line-height: 1.45; }
   .footer-main { grid-template-columns: 1fr; gap: 26px; }
   .footer-bottom { flex-direction: column; gap: 10px; line-height: 1.5; }
