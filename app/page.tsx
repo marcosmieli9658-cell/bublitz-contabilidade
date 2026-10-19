@@ -28,6 +28,9 @@ const specialties = [
   ['05', 'Prestadores de serviços'],
 ];
 
+const addressMapsUrl = 'https://www.google.com/maps/search/?api=1&query='
+  + encodeURIComponent('Rua Nelson César de Oliveira, 134, sala 24, Jardim das Indústrias, São José dos Campos, SP, 12240-220');
+
 const frequentlyAskedQuestions = [
   {
     question: 'Quais serviços a Bublitz Contabilidade oferece?',
@@ -47,7 +50,11 @@ const frequentlyAskedQuestions = [
   },
   {
     question: 'Onde fica a Bublitz Contabilidade?',
-    answer: 'O escritório fica na Rua Nelson Cesar de Oliveira, 134, sala 24, no Jardim das Indústrias, em São José dos Campos, São Paulo.',
+    answer: 'O escritório fica na Rua Nelson César de Oliveira, 134, sala 24, Jardim das Indústrias, São José dos Campos, SP, CEP 12240-220.',
+  },
+  {
+    question: 'Qual é o horário de atendimento da Bublitz?',
+    answer: 'O atendimento é de segunda a sexta, das 09:00 às 12:00 e das 13:30 às 17:00. O escritório fecha para almoço das 12:00 às 13:30 e não atende aos sábados e domingos.',
   },
   {
     question: 'Como acessar a Área do Cliente?',
@@ -221,7 +228,7 @@ export default function Home() {
           <div className="about-copy" data-reveal="right">
             <span className="kicker">Seu negócio em boas mãos</span>
             <h2>Mais que contabilidade, <em>um parceiro para o seu futuro.</em></h2>
-            <p>Há 13 anos, a Bublitz Contabilidade atua ao lado de empreendedores e profissionais, transformando obrigações em organização e informação em decisões mais seguras.</p>
+            <p>A experiência de 13 anos no ramo orienta o atendimento da Bublitz Contabilidade a empreendedores e profissionais, transformando obrigações em organização e informação em decisões mais seguras.</p>
             <p>Com atendimento para empresas, MEIs e pessoas físicas, o escritório une proximidade, conhecimento e uma visão prática da rotina de quem presta serviços.</p>
             <a className="text-link light-link" href="#contato">Encontre a Bublitz <ArrowUpRight size={17} aria-hidden="true" /></a>
           </div>
@@ -253,7 +260,8 @@ export default function Home() {
             <a className="contact-link" href="https://wa.me/5512982658942" target="_blank" rel="noopener noreferrer"><span className="contact-icon"><MessageCircle aria-hidden="true" /></span><span><small>WhatsApp</small><strong>(12) 98265-8942</strong></span><ArrowUpRight aria-hidden="true" /></a>
             <a className="contact-link" href="tel:+5512982658942"><span className="contact-icon"><Phone aria-hidden="true" /></span><span><small>Telefone</small><strong>(12) 98265-8942</strong></span><ArrowUpRight aria-hidden="true" /></a>
             <a className="contact-link contact-link-email" href="mailto:bublitz.scontabeis@gmail.com"><span className="contact-icon"><Mail aria-hidden="true" /></span><span><small>E-mail</small><strong>bublitz.scontabeis@gmail.com</strong></span><ArrowUpRight aria-hidden="true" /></a>
-            <a className="contact-link" href="https://www.google.com/maps/search/?api=1&query=Rua+Nelson+Cesar+de+Oliveira+134+Sao+Jose+dos+Campos+SP" target="_blank" rel="noreferrer"><span className="contact-icon"><MapPin aria-hidden="true" /></span><span><small>Endereço</small><strong>Rua Nelson Cesar de Oliveira, 134 — sala 24</strong><b>Jardim das Indústrias · São José dos Campos — SP</b></span><ArrowUpRight aria-hidden="true" /></a>
+            <a className="contact-link" href={addressMapsUrl} target="_blank" rel="noopener noreferrer"><span className="contact-icon"><MapPin aria-hidden="true" /></span><span><small>Endereço</small><strong>Rua Nelson César de Oliveira, 134 — sala 24</strong><b>Jardim das Indústrias · São José dos Campos — SP</b><b>CEP 12240-220</b></span><ArrowUpRight aria-hidden="true" /></a>
+            <div className="contact-link contact-hours"><span className="contact-icon"><Clock3 aria-hidden="true" /></span><span><small>Horário de atendimento</small><strong>Segunda a sexta</strong><b>09:00 às 12:00 · 13:30 às 17:00</b><b>Almoço: 12:00 às 13:30</b><b>Sábado e domingo: fechado</b></span></div>
           </address>
         </div>
       </section>

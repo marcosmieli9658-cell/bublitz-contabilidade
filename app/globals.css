@@ -146,7 +146,8 @@ h2 em { color: var(--blue-strong); font-family: Georgia,'Times New Roman',serif;
 .contact-heading h2 em { color: #001820; }
 .contact-actions { margin: 0; border-top: 1px solid rgba(0,31,43,.25); font-style: normal; }
 .contact-link { display: grid; grid-template-columns: 54px minmax(0,1fr) 24px; gap: 19px; align-items: center; min-height: 125px; border-bottom: 1px solid rgba(0,31,43,.25); transition: padding .2s ease, background .2s ease; }
-.contact-link:hover { padding-inline: 12px; background: rgba(255,255,255,.12); }
+a.contact-link:hover { padding-inline: 12px; background: rgba(255,255,255,.12); }
+.contact-hours { grid-template-columns: 54px minmax(0,1fr); }
 .contact-icon { width: 54px; height: 54px; border: 1px solid rgba(0,31,43,.35); display: grid; place-items: center; }
 .contact-icon svg { width: 23px; }
 .contact-link > span:nth-child(2) { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
@@ -245,6 +246,7 @@ footer { background: #040608; padding: 66px 0 0; }
   .faq-item summary { min-height: 94px; gap: 18px; font-size: 1rem; }
   .faq-answer p { padding-right: 30px; }
   .contact-link { grid-template-columns: 45px minmax(0,1fr) 18px; gap: 11px; min-height: 118px; }
+  .contact-hours { grid-template-columns: 45px minmax(0,1fr); }
   .contact-icon { width: 45px; height: 45px; }
   .contact-link strong { font-size: .92rem; }
   .contact-link-email strong { font-size: .82rem; }
